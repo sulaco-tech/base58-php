@@ -1,0 +1,21 @@
+{
+    "name": "sulaco-tech/base58",
+    "type": "library",
+    "description": "Pretty lightweight implementation of Base58 encoding and deconding algorithms written in PHP.",
+    "keywords": ["base58"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Bishop L.",
+            "email": "bishop@sulaco.space"
+        }
+	],
+    "require": {
+        "php": "^7.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "SulacoTech\\": "src/"
+        }
+    }
+}
