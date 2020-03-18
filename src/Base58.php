@@ -3,13 +3,11 @@
 namespace SulacoTech;
 
 use function str_split;
-use function array_combine;
-use function array_values;
-use function array_keys;
 use function array_map;
 use function array_reduce;
 use function array_unshift;
 use function array_slice;
+use function array_merge; // for support of PHP < 7.4
 use function intdiv;
 use function count;
 use function ord;
@@ -39,7 +37,7 @@ class Base58 {
 
 		$characters = str_split($charset);
 		$this->forwardTranslation = $characters;
-		$this->backTranslation = array_combine(array_values($characters), array_keys($characters));
+		$this->backTranslation = array_flip($characters);
 		$this->targetBase = count($characters);
 	}
 
@@ -58,7 +56,7 @@ class Base58 {
 		list ($leadingZeros, $data) = $this->removeLeadingZeroes($data);
 
 		$converted = $this->convert($data, 256, $this->targetBase);
-		$converted = [ ...$leadingZeros, ...$converted ];
+		$converted = array_merge($leadingZeros, $converted); // PHP 7.4 version is [ ...$leadingZeros, ...$converted ];
 
 		return array_reduce($converted, function ($result, $i) {
 			return $result . $this->forwardTranslation[$i];
@@ -83,7 +81,7 @@ class Base58 {
 		list ($leadingZeros, $data) = $this->removeLeadingZeroes($data);
 
 		$converted = $this->convert($data, $this->targetBase, 256);
-		$converted = [ ...$leadingZeros, ...$converted ];
+		$converted = array_merge($leadingZeros, $converted); // PHP 7.4 version is [ ...$leadingZeros, ...$converted ];
 		
 		return array_reduce($converted, function ($result, $code) {
 			return $result . chr($code);

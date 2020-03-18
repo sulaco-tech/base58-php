@@ -10,12 +10,13 @@ Install with [composer](https://getcomposer.org/).
 $ composer require sulaco-tech/base58
 ```
 
+## Requirements
+
 This branch requires PHP 7.0 or up.
 
 ## Usage
 
 ``` php
-
 $base58 = new SulacoTech\Base58();
 
 $data = "Hello World!";
@@ -25,14 +26,14 @@ $decoded = $base58->decode($encoded); // "Hello World!"
 
 ## Character sets
 
-Coder support few predefined charset sets for coding algorithms:
+Encoder support few predefined charset sets for coding algorithms:
 - [Bitcoin](https://github.com/bitcoin/bitcoin/blob/master/src/base58.cpp)
 - [Flickr](https://www.flickr.com/groups/api/discuss/72157616713786392/)
 - [Ripple](https://wiki.ripple.com/Accounts)
 - [IPFS](https://github.com/richardschneider/net-ipfs-core#base58)
 
 You can also use any custom 58 characters.
-By default Base58Coder uses IPFS style character set.
+By default the encoder uses IPFS style character set.
 
 ```php
 use SulacoTech\Base58;
@@ -56,12 +57,18 @@ $decoded = $base58->decode($encoded); // "Hello World!"
 
 ## Testing
 
-You can run tests with [phpunit](https://phpunit.de).
+You can run tests with external (global) installation of [PHPUnit](https://phpunit.de).
 
 ``` bash
 $ phpunit tests
 ```
 
+This branch was tested on PHP:
+- 7.0.12
+- 7.1.9
+- 7.2.17
+- 7.4.3
+
 ## License
 
-The MIT License (MIT). Please see [License File](LICENSE.md) for more information.
+This library is license under the MIT License (MIT). Please see [License File](LICENSE.md) for more information.
